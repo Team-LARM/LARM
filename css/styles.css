@@ -1,8 +1,52 @@
+* {
+    font-family:"Helvetica,Arial";
+    color:rgb(102,102,102);
+    text-align:center;
+}
+
+html {
+    /* make pageContainer stretch entire page height */
+    height:100%;
+    /* set default font-size to use with relative font sizes elsewhere (rem) */
+    font-size:62.5%;
+}
+
+
+img {
+    /* dynamically re-size images */
+    max-width:100%;
+    height:auto;
+}
 
 head {
     
 }
 
 body {
+    margin:0;
+    padding:0;
+    /* make pageContainer stretch entire page height */
+    height:100%;
+}
+
+.pageContainer {
+    
+}
+
+.headerContainer {
+    vertical-align:middle;
+    margin-left:auto;
+    margin-right:auto;
+    width:100%;
+    font-size:1.6rem;
+    height:20rem;
+    background:rgb(0,139,139);
+}
+
+.bodyContainer {
+    
+}
+
+.footerContainer {
     
 }
