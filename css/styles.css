@@ -1,7 +1,6 @@
 * {
-    font-family:"Helvetica,Arial";
+    font-family:'Helvetica','Arial';
     color:rgb(102,102,102);
-    text-align:center;
 }
 
 html {
@@ -18,6 +17,18 @@ img {
     height:auto;
 }
 
+input {
+	text-align:left;
+	}
+
+a:link {
+	text-decoration:none;
+	}
+
+a:hover {
+	font-weight:bold;
+	}
+
 head {
     
 }
@@ -30,23 +41,108 @@ body {
 }
 
 .pageContainer {
-    
+    position:relative;
+    min-height:100%;
+    font-size:1.5rem;
 }
 
 .headerContainer {
-    vertical-align:middle;
-    margin-left:auto;
-    margin-right:auto;
     width:100%;
-    font-size:1.6rem;
-    height:20rem;
-    background:rgb(0,139,139);
+    height:auto;
+    text-align:center;
 }
 
+.headerLeft {
+    position:absolute;
+    top:1rem;
+    left:8rem;
+    width:20rem;
+}
+
+.headerRight{
+    position:relative;
+    width:auto;
+    height:auto;
+    overflow:hidden;
+    margin-left:28rem;
+    padding-top:3rem;
+    padding-bottom:3rem;
+    color:white;
+    font-size:2rem;
+}
+
+.headerRight a {
+    color:white;
+    padding-right:5rem;
+    text-align:center;
+}
+
+.headerRight a:hover {
+	color:white;
+    -webkit-text-fill-color:white;
+    -webkit-text-stroke-width:1px;
+    -webkit-text-stroke-color:white;
+    font-weight:bold;
+	
+}
+
+
+.headerBanner {
+    position:absolute;
+    top:8rem;
+    left:0;
+    width:100%;
+    height:auto;
+    background:rgb(0,139,139);
+    height:auto;
+}
+
+
 .bodyContainer {
-    
+    text-align:justify;
+    padding-bottom:8rem;
+    padding-top:30rem;
+    padding-left:8rem;
+    padding-right:8rem;
 }
 
 .footerContainer {
-    
+    position:absolute;
+    bottom:0;
+    left:0;
+    width:100%;
+    font-size:1.5rem;
+    height:6rem;
+    background:rgb(238,238,224);
 }
+
+.footerLeft {
+    float:left;
+    text-align:right;
+    padding-top:2.25rem;
+    padding-bottom:2rem;
+    width:47%;
+
+}
+
+.footerRight {
+    float:right;
+    padding-right:2rem;
+    width:47%;
+    text-align:left;
+ 
+}
+
+.twolineAuth {
+    text-align:center;
+    padding-bottom:8rem;
+    padding-top:30rem;
+    padding-left:8rem;
+    padding-right:8rem;
+}
+
+
+.footerRight img {
+    padding-top:1.25rem;
+
+
