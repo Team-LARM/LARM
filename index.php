@@ -4,6 +4,11 @@
 
 <?php
     session_start();
+    $currentUser = "";
+
+if(isset($_SESSION['userID'])) {
+    $currentUser = $_SESSION['userID'];
+}
 ?>
 
 <html>
@@ -18,8 +23,16 @@
     <div class="headerContainer">
         <div class="headerBanner">
             <div class="headerRight">
-            <a href="login.php">LOGIN</a>
-            <a href="register.php">REGISTER</a>
+            <?php 
+            if($currentUser != "") {
+                echo '<a href="logout.php">LOGOUT</a>
+                        <a href="gameslanding.php">GAMES</a>';
+            }
+            
+            else {
+                echo '<a href="login.php">LOGIN</a>
+                    <a href="register.php">REGISTER</a>';
+            }?>
             </div>
         </div>
         <div class="headerLeft">
@@ -41,12 +54,12 @@
     
     <div class="footerContainer">
         <div class="footerLeft">
-            <a href="about.php">ABOUT US</a>
+            <a href="about.php" target="_blank">ABOUT US</a>
             </div>
     
         <div class="footerRight">
             <img src="images/HTML5_Badge_64.png" alt="made with HTML5" title="made with HTML5" width="32" height="32">
-            <a href="https://github.com/team-larm/LARM"><img src="images/GitHub-Mark-64px.png" alt="visit project on GitHub" title="visit project on GitHub" height="32" width="32"></a>
+            <a href="https://github.com/team-larm/LARM" target="_blank"><img src="images/GitHub-Mark-64px.png" alt="visit project on GitHub" title="visit project on GitHub" height="32" width="32"></a>
             
             </div>
         </div>

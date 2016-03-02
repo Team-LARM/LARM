@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 
+
+
 <?php
     session_start();
-    
-    if(isset($_SESSION['userID'])) {
-        $currentUser = $_SESSION['userID'];
-    }
+    session_unset();
+    session_destroy();
 ?>
 
 <html>
@@ -21,17 +21,6 @@
         
             <div class="headerBanner">
             <div class="headerRight">
-                <!--Uncomment to create links on top banner
-                <?php 
-                    if($currentUser != "") {
-                        echo '<a href="link.php">LINK</a>
-                            <a href="link.php">LINK</a>';
-                    }
-            
-                    else {
-                        echo '<a href="link.php">LINK</a>
-                            <a href="link.php">LINK</a>';
-                    }?> -->                
             </div>
         </div>
         
@@ -41,6 +30,10 @@
         </div>
     
         <div class="bodyContainer">
+            <h1>Logging Out...</h1>
+            <?php
+                header("Refresh:3; url=index.php");
+            ?>
             </div>
         
             <div class="footerContainer">

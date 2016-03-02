@@ -1,18 +1,14 @@
 <!DOCTYPE html>
 
+<?php
 
-<!-- PHP implementation for different CEFNS site/database.  We can change this as necessary but this includes much of the injection and string verification-->
-
-<!--Sanitization of input strings-->
-<!--sha1 encryption of passwords for database storage-->
-<!--uses separate script/PDO connection standard for database-->
-<!--catches exceptions and posts back to itself, redirects user to their own page if login was successful-->
-
-<?php /*
-
-include 'mysql_scripts.php';
+include 'scripts.php';
 $message = "";
 $result = array();
+
+if(isset($_SESSION['userID'])) {
+    $currentUser = $_SESSION['userID'];
+}
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {    
     
@@ -21,42 +17,42 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_SESSION['userID']))
         $message = 'User is already logged in';
 
-    if(!isset($_POST['incub_username'], $_POST['incub_password']))
+    if(!isset($_POST['User_ID'], $_POST['Password']))
         $message = 'Please enter a valid username/password';
 
-    elseif(strlen($_POST['incub_username']) > 20 || strlen($_POST['incub_username']) < 5)
+    elseif(strlen($_POST['User_ID']) > 20 || strlen($_POST['User_ID']) < 5)
         $message = 'Incorrect length for username';
 
-    elseif(strlen($_POST['incub_password']) > 20 || strlen($_POST['incub_password']) < 5)
+    elseif(strlen($_POST['Password']) > 20 || strlen($_POST['Password']) < 5)
         $message = 'Incorrect length for password';
 
-    elseif(ctype_alnum($_POST['incub_username']) != true)
+    elseif(ctype_alnum($_POST['User_ID']) != true)
         $message = 'Username must be alpha-numeric';
 
-    elseif(ctype_alnum($_POST['incub_password']) != true)
+    elseif(ctype_alnum($_POST['Password']) != true)
         $message = 'Password must be alpha-numeric';
 
     else {
-        $incub_username = filter_var($_POST['incub_username'], FILTER_SANITIZE_STRING);
-        $incub_password = filter_var($_POST['incub_password'], FILTER_SANITIZE_STRING);
-        $incub_password = sha1($incub_password); 
+        $larm_username = filter_var($_POST['User_ID'], FILTER_SANITIZE_STRING);
+        $larm_password = filter_var($_POST['Password'], FILTER_SANITIZE_STRING);
+        $larm_password = sha1($larm_password); 
 
         $dbh = connectMySQL();
 
         try {
             
-            $stmt = $dbh->prepare("SELECT incub_userID, incub_username, incub_password, active FROM incub_users WHERE incub_username = :incub_username AND incub_password = :incub_password");
+            $stmt = $dbh->prepare("SELECT ID_Number, User_ID, Password FROM USER WHERE User_ID = :User_ID AND Password = :Password");
 
-            $stmt->bindParam(':incub_username', $incub_username, PDO::PARAM_STR);
-            $stmt->bindParam(':incub_password', $incub_password, PDO::PARAM_STR, 40);
+            $stmt->bindParam(':User_ID', $larm_username, PDO::PARAM_STR);
+            $stmt->bindParam(':Password', $larm_password, PDO::PARAM_STR, 40);
             $stmt->execute();
             
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
-            $userID = $result['incub_userID'];
-            $userStatus = $result['active'];
+            $userID = $result['ID_Number'];
+            //$userStatus = $result['active'];
                         
-            if($userID == false || $userStatus == 0)
-                $message = 'Login failed';
+            if($userID == false)
+                $message = 'Account not on file';
             
             else {
                 $_SESSION['userID'] = $userID;
@@ -71,7 +67,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     
 }
 
-*/?>
+?>
 
 <html>
 <head>
@@ -85,7 +81,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="headerContainer">
         <div class="headerBanner">
             <div class="headerRight">
-            <a href="login.php">LOGIN</a>
+            
+                
+                <a href="login.php">LOGIN</a>
             <a href="register.php">REGISTER</a>
             </div>
         </div>
@@ -97,28 +95,28 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         <h2>User Login</h2>
             <form method="POST" action="
             <?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-                <p><label for="incub_username">Username: </label><input type="text" id="incub_username" name="incub_username" value="" maxlength="20" /></p>
+                <p><label for="User_ID">Username: </label><input type="text" id="User_ID" name="User_ID" value="" maxlength="20" /></p>
                 
-                <p><label for="incub_password">Password: <label><input type="password" id="incub_password" name="incub_password" value="" maxlength="20" /></p>
+                <p><label for="Password">Password: <label><input type="Password" id="Password" name="Password" value="" maxlength="20" /></p>
                 
                 <p><input type="submit" value="&rarr; Login" /></p>  
             </form>
             <p><?php
                     // Message display code and redirect for successful login
-                    /* echo $message; 
+                     echo $message; 
                     if ($message == 'You are now logged in')
-                        header("Refresh:3; url=index.php");*/
+                        header("Refresh:3; url=gameslanding.php");
                 ?></p>
                 </div>
    
     <div class="footerContainer">
         <div class="footerLeft">
-            <a href="about.php">ABOUT US</a>
+            <a href="about.php" target="_blank">ABOUT US</a>
             </div>
     
         <div class="footerRight">
             <img src="images/HTML5_Badge_64.png" alt="made with HTML5" title="made with HTML5" width="32" height="32">
-            <a href="https://github.com/team-larm/LARM"><img src="images/GitHub-Mark-64px.png" alt="visit project on GitHub" title="visit project on GitHub" height="32" width="32"></a>
+            <a href="https://github.com/team-larm/LARM" target="_blank"><img src="images/GitHub-Mark-64px.png" alt="visit project on GitHub" title="visit project on GitHub" height="32" width="32"></a>
             
             </div>
         </div>
