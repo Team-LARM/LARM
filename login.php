@@ -48,7 +48,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt->execute();
             
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
-            $userID = $result['ID_Number'];
+            $userID = $result['User_ID'];
             //$userStatus = $result['active'];
                         
             if($userID == false)
