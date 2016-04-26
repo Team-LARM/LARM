@@ -50,7 +50,7 @@
     
     // if the Continue Game button was clicked
     if (!empty($_POST['continueSubmit'])) {
-        header("Location: game.html");
+        header("Location: tictactoe.php");
         exit;
     }
     
@@ -79,6 +79,16 @@
             $rowsDeleted = $stmt->rowCount();
             if ($rowsDeleted == 0) { // unsuccessful deletion
                 $botMessage = 'Database error. Unsuccessful board delete.';
+            }
+            else { // board deleted, remove old board num from both users' tables
+                $stmt = $dbh->prepare("UPDATE USER SET Board=NULL WHERE Board IN('$boardNum')");
+                $stmt->execute();
+                
+                // check if the board num was removed successfully
+                $rowsDeleted = $stmt->rowCount();
+                if ($rowsDeleted == 0) { // unsuccessful
+                    $botMessage = 'Database error. Unsuccessful board delete.';
+                }
             }
         }
         
