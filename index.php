@@ -41,15 +41,15 @@ if(isset($_SESSION['userID'])) {
         </div>
     <div class="bodyContainer">
 
-        <p>Lorem ipsum dolor sit amet, minim vitae mollis id pro, eros explicari his ei, id nec aeterno docendi. Per assum quodsi integre at, eos te dicta nostro labitur. Pro solet vivendo sensibus ut, quo in porro electram. Vix natum perpetua consulatu an, mea ea oporteat mediocrem erroribus, has an copiosae atomorum interesset. Quo at vocibus insolens. Ut nihil convenire est, cetero hendrerit qui id, purto referrentur ne eam. Te brute omnes neglegentur his.</p>
+        <p><b>Welcome to LARM gaming.</b> With this site, any user can play tic tac toe with any other existing user. It is a collaborative site that allows people to join together and play games!</p>
 
-        <p>Ne libris vivendum tacimates pri, tritani concludaturque ut vix. Qui dicat inermis appellantur ea. Ullum reformidans duo id, in mei oblique volumus. No paulo postea duo. Eu sit labore postulant, case summo facete nam ut, et magna viderer voluptaria his. Duo platonem tincidunt eu, nec an altera accusata scriptorem. Ne pro integre intellegat, meliore suscipiantur voluptatibus mei at.</p>
+        <p>To <b>start a game</b>, either <b>login</b> or <b>register</b></p>
 
-        <p>Ea assum labore vocibus eos. Sit no minim electram constituto, nihil eligendi ea mei, augue copiosae gloriatur in mel. Scaevola sensibus dignissim id per, eam erant partiendo an, et eos nostro accusata expetendis. Meliore elaboraret eu eos, quo eruditi probatus tincidunt eu. Ea suas discere mnesarchum vis, sed congue nonumes accumsan no, id pri ipsum malorum.</p>
+        <p>Registering is easy-- you only need a username and password between 5-20 characters.</p>
 
-        <p>An facer praesent dignissim usu, nibh percipit similique cu sed. Has denique invidunt incorrupte ad, vis ea prima novum. Ignota laoreet commune vel ut. Sit ad prima euismod.</p>
+        <p>Once logged in, you can send and recieve invitations to play tic tac toe. Accepted invitations automatically start games between players. Sent invitations do not start until the invited player accepts and overwrite any previous game.</p>
 
-        <p>Te mei tale dolorem. Alia everti legimus est in. Aeterno quaeque ex vix, vim eu elit iusto malorum. Ex omittantur dissentiet mel. Ne nominavi vivendum molestiae his. Laoreet tibique cu duo.</p>
+	<p><b>Start playing!</b></p>
         </div>
     
     <div class="footerContainer">

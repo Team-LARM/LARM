@@ -1,10 +1,10 @@
 <?php
 ////// CONTAINS SCRIPTS to SIMPLIFY OTHER PAGE CODE //////
 function connectMySQL () {
-    $hostname = '';
-    $username = '';
-    $password = '';
-    $dbName = '';
+    $hostname = 'tund.cefns.nau.edu';
+    $username = 'ral292';
+    $password = 'VFJTax8Yra6qVajK';
+    $dbName = 'ral292';
     
     try {
         $dbh = new PDO("mysql:host=$hostname;
