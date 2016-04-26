@@ -1,11 +1,104 @@
 <!DOCTYPE html>
 
 <?php
-    session_start();
+    include 'tictactoescripts.php';
+    $turnMessage = "";
+    $isTurnMessag = "";
+    $game = "";
+    $symbol = "";
+    $currentUser = getCurrentUser();
+    $board = getBoard($currentUser);
     
-    if(isset($_SESSION['userID'])) {
-        $currentUser = $_SESSION['userID'];
+    $turn = getTurn($board);
+    if ($turn == 1) {
+        $turnMessage = "IT IS PLAYER O'S TURN";
+        $symbol = "O";
     }
+    else if ($turn == 0) {
+        $turnMessage = "IT IS PLAYER X'S TURN";
+        $symbol = "X";
+    }
+    
+    $isTurn = getIsTurn($board, $currentUser, $turn);
+    if ($isTurn == 1) {
+        $isTurnMessage = "Make your move.";
+    }
+    else if ($isTurn == 0) {
+        $isTurnMessage = "Please wait your turn.";
+    }
+    
+    //load the 2D game array
+    $gameArray = loadBoard($board);
+    $A1 = $gameArray[0][0];
+    $A2 = $gameArray[0][1];
+    $A3 = $gameArray[0][2];
+    $B1 = $gameArray[1][0];
+    $B2 = $gameArray[1][1];
+    $B3 = $gameArray[1][2];
+    $C1 = $gameArray[2][0];
+    $C2 = $gameArray[2][1];
+    $C3 = $gameArray[2][2];
+    
+    $numTurns = getNumTurns($gameArray);
+    
+    if (isset($_POST['A1'])) {
+        $game = game($board, $gameArray, $numTurns, $turn, $symbol, $isTurn, $A1, 0, 0);
+    }
+    else if (isset($_POST['A2'])) {
+        $game = game($board, $gameArray, $numTurns, $turn, $symbol, $isTurn, $A2, 0, 1);
+    }
+    else if (isset($_POST['A3'])) {
+        $game = game($board, $gameArray, $numTurns, $turn, $symbol, $isTurn, $A3, 0, 2);
+    }
+    else if (isset($_POST['B1'])) {
+        $game = game($board, $gameArray, $numTurns, $turn, $symbol, $isTurn, $B1, 1, 0);
+    }
+    else if (isset($_POST['B2'])) {
+        $game = game($board, $gameArray, $numTurns, $turn, $symbol, $isTurn, $B2, 1, 1);
+    }
+    else if (isset($_POST['B3'])) {
+        $game = game($board, $gameArray, $numTurns, $turn, $symbol, $isTurn, $B3, 1, 2);
+    }
+    else if (isset($_POST['C1'])) {
+        $game = game($board, $gameArray, $numTurns, $turn, $symbol, $isTurn, $C1, 2, 0);
+    }
+    else if (isset($_POST['C2'])) {
+        $game = game($board, $gameArray, $numTurns, $turn, $symbol, $isTurn, $C2, 2, 1);
+    }
+    else if (isset($_POST['C3'])) {
+        $game = game($board, $gameArray, $numTurns, $turn, $symbol, $isTurn, $C3, 2, 2);
+    }
+    
+    //load the 2D game array again to update the table with new info
+    $gameArray = loadBoard($board);
+    $A1 = $gameArray[0][0];
+    $A2 = $gameArray[0][1];
+    $A3 = $gameArray[0][2];
+    $B1 = $gameArray[1][0];
+    $B2 = $gameArray[1][1];
+    $B3 = $gameArray[1][2];
+    $C1 = $gameArray[2][0];
+    $C2 = $gameArray[2][1];
+    $C3 = $gameArray[2][2];
+    
+    $turn = getTurn($board);
+    if ($turn == 1) {
+        $turnMessage = "IT IS PLAYER O'S TURN";
+        $symbol = "O";
+    }
+    else if ($turn == 0) {
+        $turnMessage = "IT IS PLAYER X'S TURN";
+        $symbol = "X";
+    }
+    
+    $isTurn = getIsTurn($board, $currentUser, $turn);
+    if ($isTurn == 1) {
+        $isTurnMessage = "Make your move.";
+    }
+    else if ($isTurn == 0) {
+        $isTurnMessage = "Please wait your turn.";
+    }
+    
 ?>
 
 <html>
@@ -16,116 +109,6 @@
 
 <body>
 
-    <script type = "text/javascript">
-            var turn = 0;
-            var tot_turns = 0;
-            var gameArray = [];
-
-            for (var i=0; i<3; i++) {
-                gameArray.push([]);
-                for (var j=0; j<3; j++){
-                    gameArray[i].push("N");
-                }
-            }
-            
-            function win(array, player) {
-                //checks all three rows, but stops if one is a win
-                for (var i = 0; i < 3; i++) {
-                    if (checkRow(array,i,player)) {
-                        return true;    //one of the rows is a win
-                    }
-                }
-                //None of the rows were a win, checks all three cols and stops if one is a win
-                for (var i = 0; i < 3; i++) {
-                    if (checkCol(array,i,player)) {
-                        return true;    //one of the cols is a win
-                    }
-                }
-                //Neither the rows or cols were a win, checks diagonals and stops if win
-                for (var i = 0; i < 3; i+=2) {
-                    if (checkDiag(array, i, player)) {
-                        return true;
-                    }
-                }
-                //diagonals weren't a win either, return false
-                return false;
-            }
-
-            function checkRow(array, row, player) {
-                for (var i = 0; i < 3; i++) {
-                    if (array[row][i] != player){
-                        return false;   //One of the spots in the row is not the player's
-                    }
-                }
-                return true;    //All of the spots in the row belong to the player
-            }
-
-            function checkCol(array, col, player) {
-                for (var i = 0; i < 3; i++){
-                    if (array[i][col] != player) {
-                        return false;   //One of the spots in the column is not the player's
-                    }
-                }
-                return true;    //All of the spots in the col belong to the player
-            }
-
-            function checkDiag(array, col, player) {
-                //Check the starting index and the middle index belong to the player
-                //The else ifs vary based on the staring index of the diagonal and check the same
-                //if they all belong to the player, returns true
-                if (array[1][1] != player || array[0][col] != player) {
-                    return false;
-                } else if (col == 0 && array[2][2] != player) {
-                    return false;
-                } else if (col == 2 && array[2][0] != player) {
-                    return false;
-                } else {
-                    return true;
-                }
-            }
-            
-            function game(clicked_id) {
-                //Check buttons haven't already been clicked and there haven't been more turns than allowed
-                if (document.getElementById(clicked_id).textContent != "X" && document.getElementById(clicked_id).textContent != "O" && tot_turns < 9) {
-                    //X's turn
-                    if (turn == 0) {
-                        //Change button text and change value in gameArray
-                        document.getElementById(clicked_id).innerText = "X";
-                        gameArray[parseInt(clicked_id[0])][parseInt(clicked_id[1])] = "X";
-                        //Check for win. If not a win, checks if all moves have been made. If so, Cat's game; if not, switches players 
-                        if (win(gameArray,"X")){
-                            document.getElementById("turnState").innerHTML = "X won!";
-                            tot_turns = 9;  //Game over. No more playing.
-                        } else if ((tot_turns += 1) == 9){
-                            document.getElementById("turnState").innerHTML = "Cat's game!";
-                        } else{
-                            document.getElementById("turnState").innerHTML = "O's turn!";
-                        }
-                    //O's turn
-                    } else {
-                        document.getElementById(clicked_id).innerText = "O";
-                        gameArray[parseInt(clicked_id[0])][parseInt(clicked_id[1])] = "O";
-                        //Check for win. If not a win, checks if all moves have been made. If so, Cat's game; if not, switches players
-                        if (win(gameArray,"O")){
-                            document.getElementById("turnState").innerHTML = "O won!";
-                            tot_turns = 9;  //Should not be able to play anymore
-                        } else if ((tot_turns += 1) == 9) {
-                            document.getElementById("turnState").innerHTML = "Cat's game!";
-                        }
-                        else{
-                            document.getElementById("turnState").innerHTML = "X's turn!";
-                        }
-                    }
-                    turn = (turn + 1) % 2;  //Switches turns
-                }
-                else if (tot_turns >= 9) {
-                    //do nothing. Game is over.
-                } else {
-                    document.getElementById("turnState").innerHTML = "That button is already taken!";   //Keeps players from pressing already used buttons
-                }       
-            }
-    </script>
-
     <div class="pageContainer">
     
         <div class="headerContainer">
@@ -133,9 +116,7 @@
             <div class="headerBanner">
             <div class="headerRight">
                 <img src="images/tictactoe.png" alt="Tic Tac Toe" title="Tic Tac Toe" width="226" height="48">
-                <?php 
-                    echo '<a href="logout.php">LOGOUT</a>';
-                    ?>               
+                <?php echo '<a href="logout.php">LOGOUT</a>'; ?>
             </div>
         </div>
         
@@ -145,39 +126,100 @@
         </div>
     
         <div class="bodyContainer">
-            <div id="gameInsert"><b><h1 id="turnState">PLAYER X TURN</h1></b>
-            <table width=100%>
+
+            <div id="gameInsert">
+            <b><h1><?php echo $turnMessage; ?></h1></b>
+            <h2><?php echo $isTurnMessage; ?></h2>
+            <h2><?php echo $game; ?></h2>
+
+            <form name="gameForm" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+            <table id="gameTable" width=100%>
                 <tr>
-                    <td><button id ="00" onclick="game(this.id)"></button></td>
-                    <td><button id ="01" onclick="game(this.id)"></button></td>
-                    <td><button id="02" onclick ="game(this.id)"></button></td>
+                    <td><input type='submit' name='A1' value="<?php
+                                                                if (strcmp($A1, "N") == 0) {
+                                                                    echo "";
+                                                                }
+                                                                else {
+                                                                    echo $A1;
+                                                                };?>"></td>
+                    <td><input type='submit' name='A2' value="<?php
+                                                                if (strcmp($A2, "N") == 0) {
+                                                                    echo "";
+                                                                }
+                                                                else {
+                                                                    echo $A2;
+                                                                };?>"></td> 
+                    <td><input type='submit' name='A3' value="<?php
+                                                                if (strcmp($A3, "N") == 0) {
+                                                                    echo "";
+                                                                }
+                                                                else {
+                                                                    echo $A3;
+                                                                };?>"></td>
                 </tr>
                 <tr>
-		    <td><button id ="10" onclick="game(this.id)"></button></td>
-                    <td><button id ="11" onclick="game(this.id)"></button></td>
-                    <td><button id=12" onclick ="game(this.id)"></button></td>
+                    <td><input type='submit' name='B1' value="<?php
+                                                                if (strcmp($B1, "N") == 0) {
+                                                                    echo "";
+                                                                }
+                                                                else {
+                                                                    echo $B1;
+                                                                };?>"></td>
+                    <td><input type='submit' name='B2' value="<?php
+                                                                if (strcmp($B2, "N") == 0) {
+                                                                    echo "";
+                                                                }
+                                                                else {
+                                                                    echo $B2;
+                                                                };?>"></td>
+                    <td><input type='submit' name='B3' value="<?php
+                                                                if (strcmp($B3, "N") == 0) {
+                                                                    echo "";
+                                                                }
+                                                                else {
+                                                                    echo $B3;
+                                                                };?>"></td>
                 </tr>
                 <tr>
-                    <td><button id ="20" onclick="game(this.id)"></button></td>
-                    <td><button id ="21" onclick="game(this.id)"></button></td>
-                    <td><button id="22" onclick ="game(this.id)"></button></td>
+                    <td><input type='submit' name='C1' value="<?php
+                                                                if (strcmp($C1, "N") == 0) {
+                                                                    echo "";
+                                                                }
+                                                                else {
+                                                                    echo $C1;
+                                                                };?>"></td>
+                    <td><input type='submit' name='C2' value="<?php
+                                                                if (strcmp($C2, "N") == 0) {
+                                                                    echo "";
+                                                                }
+                                                                else {
+                                                                    echo $C2;
+                                                                };?>"></td>
+                    <td><input type='submit' name='C3' value="<?php
+                                                                if (strcmp($C3, "N") == 0) {
+                                                                    echo "";
+                                                                }
+                                                                else {
+                                                                    echo $C3;
+                                                                };?>"></td>
                 </tr>
-                </table>
-                </div>
+            </table>
+            </form>
             </div>
-        
-            <div class="footerContainer">
-        
-                <div class="footerLeft">
-                <a href="about.php" target="_blank">ABOUT US</a>
-                    </div>
-    
-                <div class="footerRight">
-                    <img src="images/HTML5_Badge_64.png" alt="made with HTML5" title="made with HTML5" width="32" height="32">
-                    <a href="https://github.com/team-larm/LARM" target="_blank"><img src="images/GitHub-Mark-64px.png" alt="visit project on GitHub" title="visit project on GitHub" height="32" width="32"></a>
-                    </div>
-                </div>
         </div>
-    </body>
-    
+
+        <div class="footerContainer">
+
+            <div class="footerLeft">
+            <a href="about.php" target="_blank">ABOUT US</a>
+            </div>
+
+            <div class="footerRight">
+            <img src="images/HTML5_Badge_64.png" alt="made with HTML5" title="made with HTML5" width="32" height="32">
+            <a href="https://github.com/team-larm/LARM" target="_blank"><img src="images/GitHub-Mark-64px.png" alt="visit project on GitHub" title="visit project on GitHub" height="32" width="32"></a>
+            </div>
+        </div>
+
+    </div>
+</body>
 </html>
