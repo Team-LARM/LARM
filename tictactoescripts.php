@@ -13,12 +13,14 @@ function connectMySQL () {
     catch(Exception $e) {
         return null;
     }
+	
 }
 
 //start a session to get the current user's userID
 function getCurrentUser () {
     session_start();
     if(isset($_SESSION['userID'])) {
+		$currentUser=$_SESSION['userID'];
         return $_SESSION['userID'];
     }
     else { //not logged in, give them the boot
@@ -77,6 +79,8 @@ function getBoard ($currentUser) {
     return $board_num['Board'];
 }
 
+
+
 //returns a 0 ("X") or a 1 ("O") based on whose turn it currently is
 function getTurn ($board_num) {
     //get database info on player turn and player user ids
@@ -131,6 +135,16 @@ function loadBoard($board_num) {
     return $gameArray;
 }
 
+
+function getWinner ($currentUser){
+	$b_num = getBoard($currentUser);
+	$winner = selectDB("SELECT WINNER FROM BOARD WHERE BOARD_NUM='$b_num'");
+	if($winner['WINNER'] == "No"){
+		return "No Winner";
+	}
+	return $winner['WINNER'];
+	
+}
 //helper function to get the total number of turns played
 function getNumTurns($array) {
                        
@@ -185,6 +199,7 @@ function win ($array, $symbol) {
     for($i = 0; $i < 3; $i++) {
         if (checkrow($array, $i, $symbol)){
             return true;
+			
         }
     }
     for($i = 0; $i < 3; $i++) {
@@ -242,12 +257,20 @@ function game($board, $gameArray, $numTurns, $turn, $symbol, $isTurn, $cellid, $
         
         $gameArray[$r][$c] = $symbol;
                        
+					   
+		//SELECT `TURN` FROM `board` WHERE `BOARD_NUM`=17 #Fetches User
         if (win($gameArray, $symbol)) {
+			$turnUID = $_SESSION['userID'];
+			updateDB("UPDATE BOARD SET WINNER='$turnUID' WHERE BOARD_NUM='$board'");
             $message = $symbol." won!";
             $numTurns = 9;
+			
         }
         else if (($numTurns += 1) == 9) {
-            $message = "Cat's game.";
+			updateDB("UPDATE BOARD SET WINNER = \"CAT\" WHERE BOARD_NUM='$board'");
+            $message = "Cat's game."; //This probably doesn't get displayed for long.
+			
+			
         }
         else {
              $message = "";
@@ -261,5 +284,6 @@ function game($board, $gameArray, $numTurns, $turn, $symbol, $isTurn, $cellid, $
     }
     return $message;
 }
-?>
 
+
+?>
