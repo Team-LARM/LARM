@@ -77,6 +77,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST") {
         <div class="headerBanner">
             <div class="headerRight">
                 <a href="gameslanding.php">GAMES</a>
+                <a href="personal_messages.php">CHAT</a>
                 <a href="logout.php">LOGOUT</a>
             </div>
         </div>
