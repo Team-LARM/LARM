@@ -137,9 +137,10 @@
 				<div class="headerContainer">
 				
 					<div class="headerBanner">
-					<div class="headerRight">
-						<img src="images/tictactoe.png" alt="Tic Tac Toe" title="Tic Tac Toe" width="226" height="48">';
-						echo '<a href="logout.php">LOGOUT</a>';
+					<div class="headerRight">';
+						echo '<a href="gameslanding.php">GAMES</a>
+                            <a href="personal_messages.php">CHAT</a>
+                            <a href="logout.php">LOGOUT</a>';
 					echo '</div>
 				</div>
 				
@@ -150,7 +151,8 @@
 			
 				<div class="bodyContainer">
 					<div id="gameInsert">
-					<b><h1>';
+					<img src="images/tictactoe.png" alt="tic tac toe" title="tic tac toe" width="301" height="64">
+                    <b><h1>';
 					echo $turnMessage;
 					echo '</h1></b>
 					<h2>';

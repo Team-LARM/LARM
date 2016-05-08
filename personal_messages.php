@@ -83,7 +83,7 @@
                     <div id="subjectForm">subject:<br>
                     <input type="text" name="subject" value=""
                         maxlength="35" size="28" required /></div>
-
+                    <br><br>
                     <div id="messageForm">
                         <textarea name="message" required></textarea>
                         <br><br>

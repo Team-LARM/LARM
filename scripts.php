@@ -3,7 +3,7 @@
 function connectMySQL () {
     $hostname = 'tund.cefns.nau.edu';
     $username = 'ral292';
-    $password = 'VFJTax8Yra6qVajK';
+    $password = '';
     $dbName = 'ral292';
     
     try {
@@ -75,8 +75,8 @@ function getInbox($currentUser) {
     $dbh = connectMySQL();
     
     try {
-        $stmt = $dbh->prepare("SELECT * FROM messages WHERE recipient_id= :recipient_id AND deleted = 'false'");
-        $stmt->bindParam(':recipient_id', $currentUser, PDO::PARAM_INT);
+        $stmt = $dbh->prepare("SELECT * FROM messages WHERE recipient= :recipient AND deleted = 'false'");
+        $stmt->bindParam(':recipient', $currentUser, PDO::PARAM_INT);
         $stmt->execute();
         $inboxMessages = $stmt->fetchall(PDO::FETCH_ASSOC);
         
@@ -98,9 +98,9 @@ function getSent($currentUser) {
     
     try {
     
-        $stmt = $dbh->prepare("SELECT * FROM messages WHERE sender_id= :sender_id AND deleted = 'false'");
+        $stmt = $dbh->prepare("SELECT * FROM messages WHERE sender= :sender AND deleted = 'false'");
         
-        $stmt->bindParam(':sender_id', $currentUser, PDO::PARAM_INT);
+        $stmt->bindParam(':sender', $currentUser, PDO::PARAM_INT);
         $stmt->execute();
         $sentMessages = $stmt->fetchall(PDO::FETCH_ASSOC);
         

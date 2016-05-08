@@ -12,7 +12,7 @@ html {
 
 
 img {
-    /* dynamically re-size images */
+    
     max-width:100%;
     height:auto;
 }
@@ -176,12 +176,4 @@ body {
 
 #messagesInsert {
     text-align:left;
-}
-
-#deleteMessage {
-    
-}
-
-#readMessage {
-    
 }

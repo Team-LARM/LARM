@@ -42,23 +42,22 @@ table {
     min-width:10%;
     }
 
-#nameForm, #emailForm, #subjectForm, #messagetypeForm, #mailyesForm {	
+#nameForm, #subjectForm, #messagetypeForm, #mailyesForm {	
 	float:left;
-	width:235px;
-    padding-right:40px;
+    padding-right:10px;
 	text-align:left;
 	padding-bottom:20px;
-	line-height:20px;
+	line-height:20px;*/
 	}
 
 #messageForm {
-	float:left;
+	/*float:left;
 	text-align:left;
     width:100%;
     max-width:100%;
 	height:auto;
 	padding-top:15px;
-    margin-right:10%;
+    margin-right:10%;*/
 	}
 
 @media
@@ -189,35 +188,6 @@ body {
 }
 
 
-.bodyContainer {
-    text-align:center;
-    padding-bottom:8rem;
-    padding-top:30rem;
-    padding-left:8rem;
-    padding-right:8rem;
-}
-
-#gameInsert {
-    position:relative;
-    text-align:center;
-}
-
-#gameInsert table {
-    margin: 0 auto;
-    border-collapse:collapse;
-    border-style:hidden;
-}
-
-#gameInsert td {
-    border:thin dotted;
-    padding-right:2%;
-    padding-left:2%;
-    padding-top:8%;
-    padding-bottom:8%;
-    margin:2%;
-}
-
-
 .footerContainer {
     position:absolute;
     bottom:0;
@@ -244,15 +214,6 @@ body {
     text-align:left;
  
 }
-
-.twolineAuth {
-    text-align:center;
-    padding-bottom:8rem;
-    padding-top:30rem;
-    padding-left:8rem;
-    padding-right:8rem;
-}
-
 
 .footerRight img {
     padding-top:1.25rem;
@@ -262,68 +223,6 @@ body {
     text-align:left;
 }
 
-* {
-    font-family:'Helvetica','Arial';
-    color:rgb(102,102,102);
-}
-
-html {
-    /* make pageContainer stretch entire page height */
-    height:100%;
-    /* set default font-size to use with relative font sizes elsewhere (rem) */
-    font-size:62.5%;
-}
-
-fieldset {
-    border-color:rgb(153,153,153);
-    border-style:solid;
-}
-
-textarea {
-	text-align:left;
-	resize:none;
-	box-sizing:border-box;
-	height:80px;
-	width:100%;
-    font-size:1.1rem;
-	}
-
-tr {
-    border-collapse:collapse;
-    background:white;
-}
-
-th {
-    background-color:rgb(247,247,247);
-    border-collapse:collapse;
-    }
-
-table {
-    position:relative;
-    /*white-space:nowrap;*/
-    width:100%;
-    overflow:hidden;
-    min-width:10%;
-    }
-
-#nameForm, #emailForm, #subjectForm, #messagetypeForm, #mailyesForm {	
-	float:left;
-	width:235px;
-    padding-right:40px;
-	text-align:left;
-	padding-bottom:20px;
-	line-height:20px;
-	}
-
-#messageForm {
-	float:left;
-	text-align:left;
-    width:100%;
-    max-width:100%;
-	height:auto;
-	padding-top:15px;
-    margin-right:10%;
-	}
 
 @media
 only screen and (max-width: 760px),
@@ -359,12 +258,6 @@ only screen and (max-width: 760px),
 }
 
 
-img {
-    /* dynamically re-size images */
-    max-width:100%;
-    height:auto;
-}
-
 input {
 	text-align:left;
 	}
@@ -394,64 +287,6 @@ body {
     font-size:1.5rem;
 }
 
-.headerContainer {
-    width:100%;
-    height:auto;
-    text-align:center;
-}
-
-.headerLeft {
-    position:absolute;
-    top:1rem;
-    left:8rem;
-    width:20rem;
-}
-
-.headerRight {
-    position:relative;
-    width:auto;
-    height:auto;
-    overflow:hidden;
-    margin-left:28rem;
-    padding-top:3rem;
-    padding-bottom:3rem;
-    color:white;
-    font-size:2rem;
-}
-
-.headerRight a {
-    color:white;
-    padding-right:5rem;
-    overflow:scroll;
-
-}
-
-.headerRight img {
-    padding-right:5rem;
-    vertical-align:middle;
-}
-
-
-.headerRight a:hover {
-	color:white;
-    -webkit-text-fill-color:white;
-    -webkit-text-stroke-width:1px;
-    -webkit-text-stroke-color:white;
-    font-weight:bold;
-	
-}
-
-
-.headerBanner {
-    position:absolute;
-    top:8rem;
-    left:0;
-    width:100%;
-    height:auto;
-    background:rgb(0,139,139);
-    height:auto;
-}
-
 
 .bodyContainer {
     text-align:center;
@@ -461,66 +296,6 @@ body {
     padding-right:8rem;
 }
 
-#gameInsert {
-    position:relative;
-    text-align:center;
-}
-
-#gameInsert table {
-    margin: 0 auto;
-    border-collapse:collapse;
-    border-style:hidden;
-}
-
-#gameInsert td {
-    border:thin dotted;
-    padding-right:2%;
-    padding-left:2%;
-    padding-top:8%;
-    padding-bottom:8%;
-    margin:2%;
-}
-
-
-.footerContainer {
-    position:absolute;
-    bottom:0;
-    left:0;
-    width:100%;
-    font-size:1.5rem;
-    height:6rem;
-    background:rgb(238,238,224);
-}
-
-.footerLeft {
-    float:left;
-    text-align:right;
-    padding-top:2.25rem;
-    padding-bottom:2rem;
-    width:47%;
-
-}
-
-.footerRight {
-    float:right;
-    padding-right:2rem;
-    width:47%;
-    text-align:left;
- 
-}
-
-.twolineAuth {
-    text-align:center;
-    padding-bottom:8rem;
-    padding-top:30rem;
-    padding-left:8rem;
-    padding-right:8rem;
-}
-
-
-.footerRight img {
-    padding-top:1.25rem;
-}
 
 #messagesInsert {
     text-align:left;
