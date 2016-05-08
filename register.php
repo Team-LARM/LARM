@@ -7,15 +7,6 @@
     $message = "";
 
 
-/*if($_SERVER["REQUEST_METHOD"] != "POST") {
-    // user session begins
-    session_start();
-    $message = "";
-
-
-}*/
-
-
 if($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($_POST['form_token'] != $_SESSION['form_token'])
@@ -54,6 +45,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
             unset($_SESSION['form_token']);
             $message = 'Registration Complete!';
+            $_SESSION['userID'] = $_POST['User_ID'];
         }
 
         catch(Exception $e) {
@@ -89,7 +81,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </div>
     <div class="twolineAuth">
-    <h2>Register to become a site user!</h2>   
+        <h1>Register to play!</h1>
+        <h4>- Create a username/password 5-20 alphanumeric characters in length -</h4>
+        <br>
         <?php 
             // set form token
             $form_token = md5(uniqid('auth', true));
@@ -108,7 +102,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             if($message == "Registration Complete!")
                 header("Refresh:3; url=gameslanding.php");
                 ?>
-            </p>    
+            </p>
         </div>
     
     <div class="footerContainer">
