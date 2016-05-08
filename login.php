@@ -92,7 +92,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </div>
     <div class="twolineAuth">
-        <h2>User Login</h2>
+        <h1>Login</h1>
             <form method="POST" action="
             <?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
                 <p><label for="User_ID">Username: </label><input type="text" id="User_ID" name="User_ID" value="" maxlength="20" /></p>
