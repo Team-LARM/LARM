@@ -9,10 +9,6 @@ $message = "";
 /* Check if user is logged in */
 if (isset($_SESSION['userID'])) {
     $currentUser = $_SESSION['userID'];
-    echo "<p>Invite someone to play a game with you, $currentUser.</p>";
-}
-else {
-    echo "<p>Please log in.</p>";
 }
     
 if ($_SERVER["REQUEST_METHOD"]=="POST") {
@@ -77,24 +73,34 @@ if ($_SERVER["REQUEST_METHOD"]=="POST") {
 <body>
     <div class="pageContainer">
 
-        <div class="headerContainer">
-            <div class="headerBanner">
+    <div class="headerContainer">
+        <div class="headerBanner">
             <div class="headerRight">
-            <a href="logout.php">LOGOUT</a>
+                <a href="gameslanding.php">GAMES</a>
+                <a href="logout.php">LOGOUT</a>
             </div>
-            </div>
-            <div class="headerLeft">
-            <a href="index.php"><img src="images/LARMGaming.png" alt="LARM Gaming" title="LARM Gaming" width="176 height="240"></a>
+        </div>
+        <div class="headerLeft">
+            <a href="index.php"><img src="images/LARMGaming.png" alt="LARM Gaming" title="LARM Gaming" width="176" height="240"></a>
             </div>
         </div>
     
         <div class="bodyContainer">
             <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-
+        <?php
+                if ($currentUser != "") {
+                    echo "<h3>Invite someone to play a game with you, $currentUser.</h3>";
+                }
+                
+                else {
+                    echo "<h3>Please log in.</h3>";
+                }
+                ?>
+                
             <label for="inviteUser">Enter the User ID of another player: </label>
 
             <input type="text" name="inviteUser" id="inviteUser" size="20" value="" maxlength="20" />
-            
+            <br><br>
             <input type="submit" value="&rarr; Invite" />
             </form>
             <p><?php
