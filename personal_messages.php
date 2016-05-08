@@ -47,7 +47,7 @@
 <html>
 <head>
     <title>LARM > Chat</title>
-    <link href="css/styles.css" type="text/css" rel="stylesheet" />
+    <link href="css/messages.css" type="text/css" rel="stylesheet" />
     </head>
 
 <body>
@@ -127,7 +127,7 @@
                             if ($inboxMessages[$int]["id"] == $deleteID)  
                                 echo "<tr><td colspan='5'><div id='deleteMessage'>
                                 $message</div></td></tr>";
-                                //header("Refresh:3; url=personal_messages.php");
+                                header("Refresh:3; url=personal_messages.php");
                         }
                         
                         if($readID != "") {

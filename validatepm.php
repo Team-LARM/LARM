@@ -85,7 +85,7 @@
 <html>
 <head>
     <title>LARM > Welcome</title>
-    <link href="css/styles.css" type="text/css" rel="stylesheet" />
+    <link href="css/messages.css" type="text/css" rel="stylesheet" />
     </head>
 
 <body>
