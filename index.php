@@ -24,8 +24,9 @@ if(isset($_SESSION['userID'])) {
             <div class="headerRight">
             <?php 
             if($currentUser != "") {
-                echo '<a href="logout.php">LOGOUT</a>
-                        <a href="gameslanding.php">GAMES</a>';
+                echo '<a href="gameslanding.php">GAMES</a>
+                        <a href="personal_messages.php">CHAT</a>
+                        <a href="logout.php">LOGOUT</a>';
             }
             
             else {
@@ -44,7 +45,15 @@ if(isset($_SESSION['userID'])) {
         <h2>-play tic tac toe online-</h2>
         <h2>-chat with a friend-</h2>
         <br><br>
-        <p>To <b>start a game</b>, please <b>login</b> or <b>register</b></p>
+        <?php
+            if($currentUser == "") {
+                echo '<p>To <b>start a game</b>, please <b>login</b> or <b>register</b></p>';
+            }
+            
+            else {
+                echo '';
+            }?>
+        
         </div>
     
     <div class="footerContainer">
