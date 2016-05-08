@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-    
+
     include 'scripts.php';
     session_start();
     
