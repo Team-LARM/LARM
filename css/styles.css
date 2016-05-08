@@ -10,85 +10,6 @@ html {
     font-size:62.5%;
 }
 
-textarea {
-	text-align:left;
-	resize:none;
-	box-sizing:border-box;
-	height:80px;
-	width:100%;
-    font-size:1.1rem;
-	}
-
-tr {
-    border-collapse:collapse;
-    background:white;
-}
-
-th {
-    background-color:rgb(247,247,247);
-    border-collapse:collapse;
-    }
-
-table {
-    position:relative;
-    /*white-space:nowrap;*/
-    width:100%;
-    overflow:hidden;
-    min-width:10%;
-    }
-
-#nameForm, #emailForm, #subjectForm, #messagetypeForm, #mailyesForm {	
-	float:left;
-	width:235px;
-    padding-right:40px;
-	text-align:left;
-	padding-bottom:20px;
-	line-height:20px;
-	}
-
-#messageForm {
-	float:left;
-	text-align:left;
-    width:100%;
-    max-width:100%;
-	height:auto;
-	padding-top:15px;
-    margin-right:10%;
-	}
-
-@media
-only screen and (max-width: 760px),
-(min-device-width: 768px) and (max-device-width: 1024px) {
-    table, thead, tbody, tfoot, tr, td, th, caption {
-        display:block;
-        }
-    
-    thead tr {
-        position: absolute;
-        top:-9999px;
-        left:-9999px;
-    }
-    
-    tr {
-        border:2px solid rgb(247,247,247);
-    }
-    
-    th {
-        display:none;
-    }
-    
-
-    
-    td {
-        border: none;
-        position:relative;
-        padding-left:2%;
-        padding-right:2%;
-        text-align:left;
-        border-bottom:rgb(247,247,247);
-    }
-}
-
 
 img {
     /* dynamically re-size images */
@@ -255,4 +176,12 @@ body {
 
 #messagesInsert {
     text-align:left;
+}
+
+#deleteMessage {
+    
+}
+
+#readMessage {
+    
 }
