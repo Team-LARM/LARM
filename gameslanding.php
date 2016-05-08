@@ -168,9 +168,10 @@
     
         <div class="bodyContainer">
 
-            <p>
+            <h3>
             <?php
                 echo $topMessage;
+                echo '</h3>';
                 if ($topMessage == 'Please log in first: ') {
                     echo "<a href='login.php'>CLICK HERE</a>";
                 }
