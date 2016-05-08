@@ -2,6 +2,11 @@
 
 <?php
     session_start();
+    $currentUser = "";
+
+    if(isset($_SESSION["userID"])){
+        $currentUser = $_SESSION["userID"];
+    }
 ?>
 
 <html>
@@ -17,9 +22,19 @@
         
             <div class="headerBanner">
             <div class="headerRight">
-            <a href="link.php">LINK1</a>
-            <a href="link.php">LINK2</a>
-            <a href="link.php">LINK3</a>
+                <?php
+                    if($currentUser != ""){
+                        echo '
+                            <a href="gameslanding.php">GAMES</a>
+                            <a href="personal_messages.php">CHAT</a>
+                            <a href="logout.php">LOGOUT</a>';
+                    }
+                
+                    else {
+                        echo '
+                            <a href="login.php">LOGIN</a>
+                            <a href="register.php">REGISTER</a>';
+                    }?>
             </div>
         </div>
         
@@ -30,24 +45,29 @@
     
         <div class="bodyContainer">
         <h1>About Project</h1>
-            <p>Fun project shiz here.</p>
-        <h1>About Us</h1>
-            <img src="images/ell.png" alt="Leia Trice" title="Leia Trice" width="27" height="40"> eia Trice
-            <p>CREDITS</p>
-            <p>CREDITS</p>
-            <p>CREDITS</p>
-            <img src="images/a.png" alt="Anna Moyers" title="Anna Moyers" width="35" height="40"> nna Moyers
-            <p>CREDITS</p>
-            <p>CREDITS</p>
-            <p>CREDITS</p>
-            <img src="images/r.png" alt="Ryan Ladwig" title="Ryan Ladwig" width="30" height="40">yan Ladwig
-            <p>CREDITS</p>
-            <p>CREDITS</p>
-            <p>CREDITS</p>
-            <img src="images/m.png" alt="Marjorie Hahn" title="Marjorie Hahn" width="40" height="40">arjorie Hahn
-            <p>CREDITS</p>
-            <p>CREDITS</p>
-            <p>CREDITS</p>
+            <p>A basic collaborative game website, created for CS 386 at Northern Arizona University</p>
+            <br>
+            <h1>About Us</h1>
+            
+            <br>
+            <img src="images/ell.png" alt="Leia Trice" title="Leia Trice" width="27" height="40"> <b>eia Trice</b>
+            <p>Game Logic, User Testing</p>
+            <p>JavaScript, HTML, AJAX</p>
+            
+            <br>
+            <img src="images/a.png" alt="Anna Moyers" title="Anna Moyers" width="35" height="40"> <b>nna Moyers</b>
+            <p>Graphics / UI, Database</p>
+            <p>HTML, CSS, PHP</p>
+            
+            <br>
+            <img src="images/r.png" alt="Ryan Ladwig" title="Ryan Ladwig" width="30" height="40"><b>yan Ladwig</b>
+            <p>Game Logic, Database</p>
+            <p>JavaScript, PHP, AJAX</p>
+            
+            <br>
+            <img src="images/m.png" alt="Marjorie Hahn" title="Marjorie Hahn" width="40" height="40"><b>arjorie Hahn</b>
+            <p>Game Logic, Database</p>
+            <p>Javascript, PHP, MySQL</p>
 
         </div>
     
