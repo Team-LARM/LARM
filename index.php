@@ -14,12 +14,11 @@ if(isset($_SESSION['userID'])) {
 <html>
 <head>
     <title>LARM > Welcome</title>
-    <link href="css/styles.css" type="text/css" rel="stylesheet" />
-    </head>
+    <link href="css/styles.css" type="text/css" rel="stylesheet" />    
+</head>
 
 <body>
     <div class="pageContainer">
-    
     <div class="headerContainer">
         <div class="headerBanner">
             <div class="headerRight">
@@ -40,16 +39,12 @@ if(isset($_SESSION['userID'])) {
             </div>
         </div>
     <div class="bodyContainer">
-
-        <p><b>Welcome to LARM gaming.</b> With this site, any user can play tic tac toe with any other existing user. It is a collaborative site that allows people to join together and play games!</p>
-
-        <p>To <b>start a game</b>, either <b>login</b> or <b>register</b></p>
-
-        <p>Registering is easy-- you only need a username and password between 5-20 characters.</p>
-
-        <p>Once logged in, you can send and recieve invitations to play tic tac toe. Accepted invitations automatically start games between players. Sent invitations do not start until the invited player accepts and overwrite any previous game.</p>
-
-	<p><b>Start playing!</b></p>
+        <br><br>
+        <img src="images/tictactoe.png" alt="tic tac toe" title="tic tac toe" width="301" height="64">
+        <h2>-play tic tac toe online-</h2>
+        <h2>-chat with a friend-</h2>
+        <br><br>
+        <p>To <b>start a game</b>, please <b>login</b> or <b>register</b></p>
         </div>
     
     <div class="footerContainer">
